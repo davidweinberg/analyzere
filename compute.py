@@ -6,7 +6,6 @@
 #
 import sys, argparse
 
-
 def output(n, mysum):
     """ Recursive function to generate output and track sum
     :param  n:  location in list of input
@@ -44,7 +43,6 @@ def output(n, mysum):
     print ("{:.1f}".format(value))
     return output(n+1, mysum+value)
 
-
 ### MAIN ###
 if __name__ == "__main__":
     # parse command-line arguments and cat'd file input
@@ -70,5 +68,3 @@ if __name__ == "__main__":
 
     # run recursive calculation
     output(0, 0)
-
-    
