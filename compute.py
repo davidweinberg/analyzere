@@ -6,14 +6,16 @@
 #
 import sys, argparse
 
-### FUNCTIONS ###
-### output: recursive function to generate output and track sum
-# n         - location in list of input
-# mysum     - current sum
-# myinput   - global list of floting point input
-# threshold - global value for threshold
-# limit     - global value for limit
-def output(n, mysum):        
+
+def output(n, mysum):
+    """ Recursive function to generate output and track sum
+    :param  n:  location in list of input
+    :type n: int
+
+    :param mysum: current sum
+    :type mysum: float
+    """
+
     # if we are at the end, print final sum and end recursion
     if (n >= len(myinput)):
         print ("{:.1f}".format(mysum))
@@ -44,25 +46,29 @@ def output(n, mysum):
 
 
 ### MAIN ###
-# parse command-line arguments and cat'd file input
-parser =  argparse.ArgumentParser()
-parser.add_argument('args', nargs=argparse.REMAINDER)
-parser.add_argument('stdin', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
-args = list(map(float, parser.parse_args().args))
+if __name__ == "__main__":
+    # parse command-line arguments and cat'd file input
+    parser =  argparse.ArgumentParser()    
+    parser.add_argument('args', nargs=2)
+    parser.add_argument('stdin', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
+    args = list(map(float, parser.parse_args().args))
 
-# globals to save memory, but can easily be passed in as function parameters
-myinput = list(map(float, parser.parse_args().stdin.read().splitlines()))
-threshold = args[0]
-limit = args[1]
+    # globals to save memory, but can easily be passed in as function parameters
+    myinput = list(map(float, parser.parse_args().stdin.read().splitlines()))
+    threshold = args[0]
+    limit = args[1]
 
-# check to ensure values in expected range
-if (threshold < 0 or threshold > 1000000000.0):
-    sys.exit ("threshold must be between 0.0 and 1,000,000,000.0")
+    # check to ensure values in expected range
+    if (threshold < 0 or threshold > 1000000000.0):
+        sys.exit ("threshold must be between 0.0 and 1,000,000,000.0")
     
-if (limit < 0 or limit >  1000000000.0):
-    sys.exit ("limit must be between 0.0 and 1,000,000,000.0")
+    if (limit < 0 or limit >  1000000000.0):
+        sys.exit ("limit must be between 0.0 and 1,000,000,000.0")
 
-# run recursive calculation
-output(0, 0)
+    if (len(myinput) == 0):
+        sys.exit ("input list is empty")
+
+    # run recursive calculation
+    output(0, 0)
 
     
